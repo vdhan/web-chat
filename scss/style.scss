@@ -1,0 +1,90 @@
+$xs: 5px;
+$sm: 10px;
+
+body {
+	font-family: Arial, sans-serif;
+}
+
+#input {
+	background: #bbb;
+	padding: $xs 0;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+.p-t-sm {
+	padding-top: $sm;
+}
+
+.v-center {
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+}
+
+ul {
+	list-style-type: none;
+	padding-left: 0;
+	padding-right: 0;
+
+	li:nth-child(odd) {
+		background: #eee;
+	}
+}
+
+#onlines {
+	border-left: 1px solid;
+	border-bottom: 1px solid;
+	border-bottom-left-radius: 5px;
+
+	a {
+		text-decoration: none;
+	}
+}
+
+@mixin respond($text, $h1, $h2, $h3, $h4) {
+	.text-reponsive {
+		font-size: $text;
+	}
+
+	h1.text-reponsive {
+		font-size: $h1;
+		font-weight: bold;
+	}
+
+	h2.text-reponsive {
+		font-size: $h2;
+		font-weight: bold;
+	}
+
+	h3.text-reponsive {
+		font-size: $h3;
+		font-weight: bold;
+	}
+
+	h4.text-reponsive {
+		font-size: $h4;
+		font-weight: bold;
+	}
+}
+
+@media (max-width: 479px) {
+	@include respond(12px, 24px, 21px, 18px, 15px);
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+	@include respond(14px, 29px, 25px, 21px, 17px);
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	@include respond(15px, 33px, 28px, 23px, 18px);
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	@include respond(16px, 35px, 30px, 25px, 20px);
+}
+
+@media (min-width: 1200px) {
+	@include respond(17px, 37px, 32px, 27px, 22px);
+}

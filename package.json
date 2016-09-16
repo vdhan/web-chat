@@ -1,0 +1,25 @@
+{
+	"name": "app",
+	"version": "1.0.0",
+	"scripts": {
+		"webp": "webpack -w",
+		"scss": "scss -t compressed --watch scss:static/css",
+		"node": "nodemon index.js"
+	},
+	"license": "AGPL-3.0",
+	"repository": {},
+	"description": "socket.io + react",
+	"dependencies": {
+		"socket.io": "",
+		"express": "",
+		"react": "",
+		"react-dom": ""
+	},
+	"devDependencies": {
+		"webpack": "",
+		"babel-core": "",
+		"babel-loader": "",
+		"babel-preset-react": "",
+		"babel-preset-es2015": ""
+	}
+}

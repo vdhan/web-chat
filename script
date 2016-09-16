@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=("webpack -w" "nodemon index.js" "scss -t compressed --watch scss:static/css")
+
+for i in "${cmd[@]}";do
+	xfce4-terminal --tab -e "bash -ci '$i; bash'"
+done
+
+exit 0
