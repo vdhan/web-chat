@@ -21,6 +21,8 @@ class Chat extends React.Component {
 		});
 
 		this.sendMessage = this.sendMessage.bind(this);
+		this.openOnlines = this.openOnlines.bind(this);
+		this.closeOnlines = this.closeOnlines.bind(this);
 	}
 
 	sendMessage() {
@@ -51,6 +53,18 @@ class Chat extends React.Component {
 		getI('online-list').appendChild(li);
 	}
 
+	openOnlines() {
+		getI('onlineBoard').style.width = '120px';
+	    getI('content').style.marginRight = '120px';
+		getI('onlines-info').onclick = this.closeOnlines;
+	}
+
+	closeOnlines() {
+		getI('onlineBoard').style.width = '0';
+	    getI('content').style.marginRight = '0';
+		getI('onlines-info').onclick = this.openOnlines;
+	}
+
 	componentDidMount() {
 		this.state.socket.on('connected', (data) => {
 			this.updateMessage(data.msg);
@@ -76,6 +90,12 @@ class Chat extends React.Component {
 			});
 		});
 
+		var offsetRight = (-getI('onlines').offsetWidth / 2 + getI('onlines').offsetHeight / 2);
+		getI('onlines').style.cssText += `right: ${offsetRight}px; visibility: visible`;
+
+		getI('onlines-info').onclick = this.openOnlines;
+		getI('content').style.marginBottom = `${getI('input').offsetHeight}px`;
+
 		getI('mess').addEventListener('keyup', (e) => {
 			if(e.keyCode == 13) {
 				this.sendMessage();
@@ -86,18 +106,19 @@ class Chat extends React.Component {
 	render() {
 		return (
 			<div>
-				<div className="col-xs-11">
-					<ul id="messages"></ul>
+				<div id="content">
+					<ul id="messages">
+						<li>&nbsp;</li>
+					</ul>
+					<div id="onlines" className="vertical-text">
+						<a id="onlines-info">
+							Onlines: {this.state.onlines}
+						</a>
+					</div>
 				</div>
 
-				<div id="onlines" className="col-xs-1">
-					<a href="#onlineBoard" data-toggle="collapse">
-						Onlines: {this.state.onlines}
-					</a>
-
-					<div id="onlineBoard" className="collapse">
-						<ul id="online-list"></ul>
-					</div>
+				<div id="onlineBoard">
+					<ul id="online-list"></ul>
 				</div>
 
 				<div id="input">

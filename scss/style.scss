@@ -25,22 +25,56 @@ body {
 
 ul {
 	list-style-type: none;
-	padding-left: 0;
-	padding-right: 0;
+	padding-left: $sm;
+	padding-right: $sm;
 
-	li:nth-child(odd) {
+	li:nth-child(even) {
 		background: #eee;
 	}
 }
 
-#onlines {
-	border-left: 1px solid;
-	border-bottom: 1px solid;
-	border-bottom-left-radius: 5px;
+#messages {
+	margin-right: 30px;
+}
+
+#content {
+	transition: margin-right .5s;
+	position: relative;
 
 	a {
 		text-decoration: none;
 	}
+
+	a:hover {
+		cursor: pointer;
+	}
+}
+
+#onlines {
+	border: 1px solid;
+	visibility: hidden;
+}
+
+.vertical-text {
+	-moz-transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+	transform: rotate(270deg);
+	position: absolute;
+	top: 40px;
+}
+
+#onlineBoard {
+	width: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-height: 100px;
+	overflow-x: hidden;
+	transition: .5s;
+	border-left: 1px solid;
+	border-bottom: 1px solid;
+	border-bottom-left-radius: 5px;
 }
 
 @mixin respond($text, $h1, $h2, $h3, $h4) {

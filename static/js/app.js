@@ -20523,6 +20523,8 @@ webpackJsonp([0,1],[
 			});
 
 			_this.sendMessage = _this.sendMessage.bind(_this);
+			_this.openOnlines = _this.openOnlines.bind(_this);
+			_this.closeOnlines = _this.closeOnlines.bind(_this);
 			return _this;
 		}
 
@@ -20558,6 +20560,20 @@ webpackJsonp([0,1],[
 				(0, _utils.getI)('online-list').appendChild(li);
 			}
 		}, {
+			key: 'openOnlines',
+			value: function openOnlines() {
+				(0, _utils.getI)('onlineBoard').style.width = '120px';
+				(0, _utils.getI)('content').style.marginRight = '120px';
+				(0, _utils.getI)('onlines-info').onclick = this.closeOnlines;
+			}
+		}, {
+			key: 'closeOnlines',
+			value: function closeOnlines() {
+				(0, _utils.getI)('onlineBoard').style.width = '0';
+				(0, _utils.getI)('content').style.marginRight = '0';
+				(0, _utils.getI)('onlines-info').onclick = this.openOnlines;
+			}
+		}, {
 			key: 'componentDidMount',
 			value: function componentDidMount() {
 				var _this2 = this;
@@ -20586,6 +20602,12 @@ webpackJsonp([0,1],[
 					});
 				});
 
+				var offsetRight = -(0, _utils.getI)('onlines').offsetWidth / 2 + (0, _utils.getI)('onlines').offsetHeight / 2;
+				(0, _utils.getI)('onlines').style.cssText += 'right: ' + offsetRight + 'px; visibility: visible';
+
+				(0, _utils.getI)('onlines-info').onclick = this.openOnlines;
+				(0, _utils.getI)('content').style.marginBottom = (0, _utils.getI)('input').offsetHeight + 'px';
+
 				(0, _utils.getI)('mess').addEventListener('keyup', function (e) {
 					if (e.keyCode == 13) {
 						_this2.sendMessage();
@@ -20600,23 +20622,31 @@ webpackJsonp([0,1],[
 					null,
 					_react2.default.createElement(
 						'div',
-						{ className: 'col-xs-11' },
-						_react2.default.createElement('ul', { id: 'messages' })
-					),
-					_react2.default.createElement(
-						'div',
-						{ id: 'onlines', className: 'col-xs-1' },
+						{ id: 'content' },
 						_react2.default.createElement(
-							'a',
-							{ href: '#onlineBoard', 'data-toggle': 'collapse' },
-							'Onlines: ',
-							this.state.onlines
+							'ul',
+							{ id: 'messages' },
+							_react2.default.createElement(
+								'li',
+								null,
+								' '
+							)
 						),
 						_react2.default.createElement(
 							'div',
-							{ id: 'onlineBoard', className: 'collapse' },
-							_react2.default.createElement('ul', { id: 'online-list' })
+							{ id: 'onlines', className: 'vertical-text' },
+							_react2.default.createElement(
+								'a',
+								{ id: 'onlines-info' },
+								'Onlines: ',
+								this.state.onlines
+							)
 						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ id: 'onlineBoard' },
+						_react2.default.createElement('ul', { id: 'online-list' })
 					),
 					_react2.default.createElement(
 						'div',
