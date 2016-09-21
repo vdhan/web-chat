@@ -20680,7 +20680,7 @@ webpackJsonp([0,1],[
 /* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -20710,15 +20710,24 @@ webpackJsonp([0,1],[
 		}
 
 		_createClass(Copy, [{
-			key: "render",
+			key: 'getYear',
+			value: function getYear() {
+				var year = 2016;
+				var current = new Date().getFullYear();
+				return year + (current > year && '-' + current);
+			}
+		}, {
+			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
-					"div",
-					{ className: "col-xs-12 text-center p-t-sm text-primary" },
+					'div',
+					{ className: 'col-xs-12 text-center p-t-sm text-primary' },
 					_react2.default.createElement(
-						"strong",
+						'strong',
 						null,
-						"Copyright © 2016 Hoàng Ân"
+						'Copyright © ',
+						this.getYear(),
+						', Hoàng Ân'
 					)
 				);
 			}
